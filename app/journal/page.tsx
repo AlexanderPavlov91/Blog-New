@@ -20,21 +20,22 @@ export default function JournalPage() {
         <ul className="divide-y divide-warmstone-lighter">
           {posts.map((post) => (
             <li key={post.slug} className="py-10 first:pt-0">
-              <Link href={`/journal/${post.slug}`} className="group flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-8">
                 <span className="text-xs text-warmstone tabular-nums shrink-0 sm:w-36 sm:pt-1.5">
                   {formatDate(post.date)}
                 </span>
                 <div>
-                  <h2 className="font-headline text-2xl sm:text-3xl text-charcoal group-hover:text-navy transition-colors duration-200 mb-2 leading-snug">
-                    {post.title}
-                  </h2>
+                  <Link href={`/journal/${post.slug}`} className="group block mb-1">
+                    <h2 className="font-headline text-2xl sm:text-3xl text-charcoal group-hover:text-navy transition-colors duration-200 leading-snug">
+                      {post.title}
+                    </h2>
+                  </Link>
                   <p className="text-sm text-charcoal/60 leading-relaxed mb-3">{post.excerpt}</p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <Link
                         key={tag}
                         href={`/topics/${encodeURIComponent(tag)}`}
-                        onClick={(e) => e.stopPropagation()}
                         className="text-xs text-warmstone hover:text-navy transition-colors duration-200"
                       >
                         {tag}
@@ -42,7 +43,7 @@ export default function JournalPage() {
                     ))}
                   </div>
                 </div>
-              </Link>
+              </div>
             </li>
           ))}
         </ul>
